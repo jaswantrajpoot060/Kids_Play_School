@@ -1,0 +1,90 @@
+﻿@model Ipschool.Models.MainModel
+
+@if (ViewBag.Msg != "")
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @ViewBag.Msg
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+}
+
+<table class="table table-striped table-bordered table-hover table display data-table text-nowrap">
+    <thead>
+        <tr>
+            <th style="width:5%;"> S.No </th>
+            <th style="width:10%;">Photo</th>
+            <th style="width:12%;">Staus</th>
+            <th style="width:10%;">Enrol.No</th>
+            <th style="width:8%;">Roll No</th>
+            <th style="width:12%;">Name</th>
+            <th style="width:8%;">Class</th>
+            <th style="width:20%;">Address</th>
+            <th style="width:12%;">DOB</th>
+            <th style="width:12%;">Phone</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int SNo = 0;
+        }
+        @foreach (var item in Model.RegistrationList)
+        {
+            SNo++;
+            <tr class="odd gradeX">
+                <td> @SNo. </td>
+                <td class="text-center"><img src="@item.Img" style="width:50px; height:50px;" alt="student"></td>
+                <td>
+                    <a href="/Admin/UpdateRegistration?Id=@item.Id">
+                        @{
+            if (@item.Status == "Pending")
+            {
+                <span class="btn btn-danger">Pending</span>
+            }
+            else
+            {
+                <span class="btn btn-success">Active</span>
+            }
+                        }
+                    </a>
+                    @*@{
+            string Status = "Pending";
+            if (@item.Status == "true")
+            {
+                Status = "Active";
+            }
+                    }
+                    <a href="/Admin/UpdateRegistration?Id=@item.Id">
+                        <span class="btn btn-danger">@Status</span>
+                    </a>*@
+                </td>
+                <td>@item.ApplicationNo</td>
+                <td>@item.RollNo</td>
+                <td>@item.Name</td>
+                <td>@item.Extra3</td>
+                <td>@item.Address1 @item.Distict </td>
+                <td>
+                    @{
+            DateTime Date = DateTime.Now;
+            DateTime.TryParse(item.DOB, out Date);
+
+                    }@Date.ToString("dd/MM/yyyy")
+                </td>
+                <td>@item.MobileNo</td>
+                <td>
+                    <a href="/Admin/AddRegistration?Id=@item.Id" class="btn-default">
+                        <i class="fa fa-edit"></i>
+                    </a>
+
+                    <a href="/Admin/DeleteRegistration?Id=@item.Id" class="btn-default" onclick="return confirm('are you sure?')">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />

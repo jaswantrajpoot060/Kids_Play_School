@@ -1,0 +1,79 @@
+﻿@model Ipschool.Models.MainModel
+@{
+    ViewBag.Title = "StudentProfile";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div>
+    <div class="breadcrumbs-area">
+        <ul>
+            <li style="color: green; font-family: 'Comic Sans MS';">Student Profile</li>
+            <li style="font-family:'Arial Rounded MT';">Admission Id: @Model.Registration.ApplicationNo</li>
+            <li style="font-family:'Arial Rounded MT'; color:Red;">Class: @Model.Registration.Extra3</li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-4-xxxl col-xl-3">
+            <div class="card account-settings-box height-auto">
+                <div class="card-body">
+                    <div class="heading-layout1 mg-b-20">
+                        <div class="item-title">
+                            <ul>
+                                <li style="color: green; font-family:'Comic Sans MS';">Student Name</li>
+                                <li Style="font-family:'comic sans ms';">@ViewBag.Name</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="all-user-box">
+                        <div class="">
+                            <img src="@ViewBag.Img" class="media-img-auto" alt="user">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-8-xxxl col-xl-9">
+            <div class="card account-settings-box">
+                <div class="card ui-tab-card">
+                    <div class="card-body">
+                        <div class="heading-layout1 mg-b-20">
+                            <div class="item-title">
+                                <h3 style="font-family:'Comic Sans MS';">Student Details</h3>
+                            </div>
+                        </div>
+                        <div class="custom-tab">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active show" data-toggle="tab" href="#tab4" role="tab" aria-selected="true" style="font-family:'comic sans ms';">Profile</a>
+                                </li>
+                              @*<li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#tab5" role="tab" aria-selected="true"Style="font-family:'comic sans ms';">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#tab6" role="tab" aria-selected="false"Style="font-family:'comic sans ms';">Settings</a>
+                                </li>*@
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade  active show" id="tab4" role="tabpanel">
+                                    <div id="addata1_div">
+                                        @{Html.RenderPartial("~/Views/PartialView/_StudentProfile.cshtml", @Model);}
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="tab5" role="tabpanel">
+                                    <p>
+                                        Contant2
+                                    </p>
+                                </div>
+                                <div class="tab-pane fade" id="tab6" role="tabpanel">
+                                    <p>
+                                        Contant3
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

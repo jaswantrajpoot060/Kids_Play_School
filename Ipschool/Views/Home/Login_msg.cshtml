@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-push-3">
+                    <h4 class="text-gray mt-0 pt-5"> @ViewBag.Title </h4><h4 style="color:green;">Admin And Student Panel:-</h4>
+                    <hr>
+                    @if (ViewBag.Msg != "")
+                    {
+                        <b style="color:red;">
+                            Invalid User Name Or Password!
+                        </b>
+                    }
+                    @using (Html.BeginForm("UserLogin", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "clearfix" }))
+                    {
+
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="form_username_email">Username / Email</label>
+                                <input type="email" id="email" name="email" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="form_password">Password</label>
+                                <input type="password" id="password" name="password" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                        <div class="form-group col-md-12">
+                            <button type="submit" class="btn btn-success">Log In</button>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>

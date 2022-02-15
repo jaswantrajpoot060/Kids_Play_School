@@ -1,0 +1,55 @@
+﻿@model Ipschool.Models.MainModel
+
+@if (ViewBag.Msg != "")
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @ViewBag.Msg
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+}
+
+<table class="table table-striped table-bordered table-hover table display data-table text-nowrap">
+    <thead>
+        <tr>
+            <th style="width:5%;"> S.No </th>
+            <th style="width:10%;">Img</th>
+            <th style="width:8%;">Role</th>
+            <th style="width:12%;">Name</th>
+            <th style="width:12%;">Phone</th>
+            <th style="width:12%;">Email</th>
+            <th style="width:12%;">Password</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int SNo = 0;
+        }
+        @foreach (var item in Model.UserList)
+        {
+            SNo++;
+            <tr class="odd gradeX">
+                <td> @SNo. </td>
+                <td class="text-center"><img src="@item.Img" style="width:50px; height:50px;" alt="@item.Role"></td>
+                <td>@item.Role</td>
+                <td>@item.Name</td>
+                <td>(+91) @item.MobileNo</td>
+                <td>@item.Email</td>
+                <td>@item.Password </td>
+                <td>
+                    <a href="/Admin/AddUser?Id=@item.Id" class="btn-default">
+                        <i class="fa fa-edit"></i>
+                    </a>
+
+                    <a href="/Admin/DeleteUser?Id=@item.Id" class="btn-default" onclick="return confirm('are you sure?')">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />

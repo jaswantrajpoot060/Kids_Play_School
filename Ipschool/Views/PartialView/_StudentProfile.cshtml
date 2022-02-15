@@ -1,0 +1,87 @@
+﻿@model Ipschool.Models.MainModel
+
+<form id="studentprofile">
+    <input type="hidden" id="Id" name="Id" value="@Model.Registration.Id" />
+    <div class="row">
+        <div class="col-xl-4 col-lg-6 col-12 form-group">
+            <label>Admission ID</label>
+            <input type="text" name="ApplicationNo" id="ApplicationNo" class="form-control" value="@Model.Registration.ApplicationNo" readonly>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-12 form-group">
+            <label>Admission Date </label>
+            <input type="text" name="ApplicationDate" id="ApplicationDate" class="form-control" value="@Model.Registration.ApplicationDate" readonly>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-12 form-group">
+            <label>Roll Number</label>
+            <input type="text" name="RollNo" id="RollNo" class="form-control" value="@Model.Registration.RollNo" readonly>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-12 form-group">
+            <label>Student Name </label>
+            <input type="text" name="Name" id="Name" class="form-control" value="@Model.Registration.Name" readonly>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-12 form-group">
+            <label>Class </label>
+            <input type="text" name="drpclass" id="drpclass" class="form-control" value="@Model.Registration.Extra3" readonly>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-12 form-group">
+            <label>Date Of Birth </label>
+            <input type="text" name="DOB" id="DOB" class="form-control" value="@Model.Registration.DOB" readonly>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-12 form-group">
+            <label>Fathers Name </label>
+            <input type="text" name="FatherName" id="FatherName" class="form-control" value="@Model.Registration.FatherName" readonly>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-12 form-group">
+            <label>Mothers Name </label>
+            <input type="text" name="MotherName" id="MotherName" class="form-control" value="@Model.Registration.MotherName" readonly>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-12 form-group">
+            <label>Fathers Occupation </label>
+            <input type="text" name="Occupation" id="Occupation" class="form-control" value="@Model.Registration.MobileNo" readonly>
+            @*@Html.DropDownList("drpoccupation", (SelectList)ViewBag.Occupation, "Select Occupation", new { @required = "required", @class = "select2" })*@
+        </div>
+        <div class="col-xl-4 col-lg-6 col-12 form-group">
+            <label>Gender </label>
+            <input type="text" name="rbGrp2" id="rbGrp2" class="form-control" value="@Model.Registration.Gender" readonly>
+            @*@Html.DropDownList("rbGrp2", (SelectList)ViewBag.Gender, "Select Gender", new { @required = "required", @class = "select2" })*@
+        </div>
+        <div class="col-xl-4 col-lg-6 col-12 form-group">
+            <label>Category </label>
+            <input type="text" name="drpcatagery" id="drpcatagery" class="form-control" value="@Model.Registration.Catagery" readonly>
+            @*@Html.DropDownList("drpcatagery", (SelectList)ViewBag.Category, "Select Category", new { @required = "required", @class = "select2" })*@
+        </div>
+        <div class="col-xl-4 col-lg-6 col-12 form-group">
+            <label>Religion </label>
+            <input type="text" name="drpreligious" id="drpreligious" class="form-control" value="@Model.Registration.Extra1" readonly>
+            @*@Html.DropDownList("drpreligious", (SelectList)ViewBag.Religion, "Select Religion", new { @required = "required", @class = "select2" })*@
+        </div>
+        <div class="col-xl-4 col-lg-6 col-12 form-group">
+            <label>E-Mail</label>
+            <input type="email" name="EmailId" id="EmailId" class="form-control" value="@Model.Registration.EmailId" readonly>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-12 form-group">
+            <label>Phone</label>
+            <input type="text" name="MobileNo" id="MobileNo" class="form-control" value="@Model.Registration.MobileNo" readonly>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-12 form-group">
+            <label>Aadhar Card No</label>
+            <input type="text" name="AddharCardNo" id="AddharCardNo" class="form-control" value="@Model.Registration.AddharCardNo" readonly>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-12 form-group">
+            <label>District</label>
+            <input type="text" name="Distict" id="Distict" class="form-control" value="@Model.Registration.Distict" readonly>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-12 form-group">
+            <label>Pin Code</label>
+            <input type="text" name="PinCode" id="PinCode" class="form-control" value="@Model.Registration.PinCode" readonly>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-12 form-group">
+            <label>Address</label>
+            <input type="text" name="Address1" id="Address1" class="form-control" value="@Model.Registration.Address1" readonly>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-12 form-group">
+            <label>Student Package</label>
+            <input type="text" name="Package" id="Package" class="form-control" value="@Model.Registration.Extra2" readonly>
+        </div>
+    </div>
+</form>

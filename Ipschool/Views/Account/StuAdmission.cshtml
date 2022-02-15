@@ -1,0 +1,228 @@
+﻿@model Ipschool.Models.MainModel
+
+@{
+    ViewBag.Title = "Admission Online";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    function showimagepreviewnew(input) {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#imgprvw').attr('src', e.target.result);
+            }
+            filerdr.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    function showimagepreviewnewbc(input) {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#imgprvwbc').attr('src', e.target.result);
+            }
+            filerdr.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+@*<script type="text/javascript">
+        function showimagepreviewnewth(input) {
+            if (input.files && input.files[0]) {
+                var filerdr = new FileReader();
+                filerdr.onload = function (e) {
+                    $('#imgprvwth').attr('src', e.target.result);
+                }
+                filerdr.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>*@
+
+
+<!-- Section: inner-header -->
+<section class="inner-header divider parallax layer-overlay overlay-dark-5" data-bg-img="../assets1/images/bg/bg3.jpg">
+    <div class="container pt-70 pb-20">
+        <!-- Section Content -->
+        <div class="section-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-theme-color-yellow font-36">@ViewBag.Title form</h2>
+                    <ol class="breadcrumb text-left text-black mt-10">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Pages</a></li>
+                        <li class="active text-gray-silver">@ViewBag.Title</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Section: Admission Apply Form -->
+<section class="divider">
+    <div class="container">
+        <div class="col-md-10 col-md-push-1">
+            <div class="border-1px p-30 mb-0">
+                @if (ViewBag.Msg != "")
+                {
+                    <div class="status alert alert-success" style="">
+                        Success! @ViewBag.Msg
+                    </div>
+                }
+                @using (Html.BeginForm("SaveStudent", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @style = "margin-left:5%" }))
+                {
+
+                    <h3 class="text-theme-colored mt-0 pt-5">@ViewBag.Title Now</h3>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label>Student Name <small>*</small></label>
+                            <input type="text" name="Name" id="Name" style="width:90%; height:70%;" class="form-control" placeholder="Enter Student Name" required>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Class <small>*</small></label>
+                            @Html.DropDownList("drpclass", (SelectList)ViewBag.Class, "Select Class", new { @required = "required", style = "width:90%; height:70%;", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label>Date Of Birth <small>*</small></label>
+                            <input type="text" name="DOB" id="DOB" class="form-control required date-picker" style="width:90%; height:70%;" placeholder="Date of Birth" required>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Gender <small>*</small></label>
+                            @Html.DropDownList("rbGrp2", (SelectList)ViewBag.Gender, "Select Gender", new { @required = "required", style = "width:90%; height:70%;", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label>Father Name <small>*</small></label>
+                            <input type="text" name="FatherName" id="FatherName" style="width:90%; height:70%;" class="form-control" placeholder="Enter Father Name" required>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Mother Name <small>*</small></label>
+                            <input type="text" name="MotherName" id="MotherName" style="width:90%; height:70%;" class="form-control" placeholder="Enter Mother Name" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label>Eamil Id <small>*</small></label>
+                            <input type="email" name="EmailId" id="EmailId" style="width:90%; height:70%;" class="form-control" placeholder="Enter Valid Email" required>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Mobile No <small>*</small></label>
+                            <input type="text" name="MobileNo" id="MobileNo" style="width:90%; height:70%;" class="form-control" placeholder="Enter Valid No." required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label>Aadhar No  <small>*</small></label>
+                            <input type="text" name="AddharCardNo" id="AddharCardNo" style="width:90%; height:70%;" class="form-control" placeholder="Enter Addhar No" required>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Category <small>*</small></label>
+                            @Html.DropDownList("drpcatagery", (SelectList)ViewBag.Category, "Select Category", new { @required = "required", style = "width:90%; height:70%;", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label>Religious <small>*</small></label>
+                            @Html.DropDownList("drpreligious", (SelectList)ViewBag.Religion, "Select Religion", new { @required = "required", style = "width:90%; height:70%;", @class = "form-control" })
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Father Occupation  <small>*</small></label>
+                            @Html.DropDownList("drpoccupation", (SelectList)ViewBag.Occupation, "Select Occupation", new { @required = "required", style = "width:90%; height:70%;", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label>District <small>*</small></label>
+                            <input type="text" name="Distict" id="Distict" style="width:90%; height:70%;" class="form-control" placeholder="Enter City Name" required>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Pincode  <small>*</small></label>
+                            <input type="text" name="PinCode" id="PinCode" style="width:90%; height:70%;" class="form-control" placeholder="Area Pin Code" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label>Address  <small>*</small></label>
+                            <input type="text" name="Address1" id="Address1" style="width:90%; height:70%;" class="form-control" placeholder="Enter Valid Address" required>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Packages  <small>*</small></label>
+                            <input type="text" name="Package" id="Package" style="width:90%; height:70%;" class="form-control" placeholder="select only package ₹3000/- " required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label>Student Image <small>*</small></label>
+                            <div class="input-icon right">
+                                <img src="../UserImage/noimage.png" alt="" id="imgprvw" class="imageresize" style="width: 100px; height: 100px;" />
+
+                                <input type="file" name="fileupload" id="fileupload" class="file valid" multiple="" data-show-upload="false" data-show-caption="true" aria-invalid="true" onchange="showimagepreviewnew(this)" required>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Birth Cartificate <small>*</small></label>
+                            <div class="input-icon right">
+                                <img src="../UserImage/noimage.png" alt="" id="imgprvwbc" class="imageresize" style="width: 100px; height: 100px;" />
+
+                                <input type="file" name="fileuploadbc" id="fileuploadbc" class="file valid" multiple="" data-show-upload="false" data-show-caption="true" aria-invalid="true" onchange="showimagepreviewnewbc(this)" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top:3%;">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+@*<script type="text/javascript">
+
+        $('#drpstate').change(function () {
+
+            var Id = $('#drpstate').val();
+            if (Id != "") {
+                $.ajax({
+                    url: '/Account/GetById_State',
+                    dataType: "json",
+                    type: "POST",
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify({ Id: Id }),
+                    async: true,
+                    processData: false,
+                    cache: false,
+                    success: FillSubject1,
+                    error: function (xhr) {
+                    }
+                });
+            }
+        });
+
+        function FillSubject1(result) {
+            debugger;
+            var DistrictList = result.DistrictList;
+            var select = $("#drpdistrict");
+            if (select != null) {
+                select.empty();
+                select.append($('<option/>', {
+                    value: "",
+                    text: "Select District"
+                }));
+                for (i = 0; i < DistrictList.length; i++) {
+                    select.append($('<option/>', {
+                        value: DistrictList[i].Id,
+                        text: DistrictList[i].DistrictName
+                    }));
+                }
+            }
+        }
+    </script>*@

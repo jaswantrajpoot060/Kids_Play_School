@@ -1,0 +1,74 @@
+﻿@model Ipschool.Models.MainModel
+
+@{
+    ViewBag.Title = "AddUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script type="text/javascript">
+    function showimagepreviewnew(input) {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#imgprvw').attr('src', e.target.result);
+            }
+            filerdr.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+<div class="page-content-wrapper">
+    <div class="page-content">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                <div class="portlet light bordered">
+                    <div class="portlet-title">
+                        <div class="caption font-dark">
+                            <i class="icon-settings font-dark"></i>
+                            <span class="caption-subject bold uppercase"> View / Edit User Details</span>
+                        </div>
+                        <div class="actions">
+                        </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="form-body">
+                            @using (Html.BeginForm("SaveUser", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", @id = "form_sample_2" }))
+                            {
+                                <input type="hidden" id="Id" name="Id" value="@Model.User.Id" />
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">
+                                        Associate Image
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-4">
+                                        <div class="input-icon right">
+                                            <i class="fa"></i>
+                                            @if (@Model.User.Id != Guid.Empty && @Model.User.Img != "")
+                                            {
+                                                <img src="@Url.Content(Model.User.Img)" alt="..." id="imgprvw" class="imageresize" style="width: 150px; height: 150px;" />
+                                            }
+                                            else
+                                            {
+                                                <img src="../UserImage/noimage.png" id="imgprvw" class="imageresize" style="width: 150px; height: 150px;" />
+                                            }
+                                            <br /><br />
+                                            <input type="file" name="fileupload" id="fileupload" onchange="showimagepreviewnew(this)" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <button type="submit" class="btn green">Submit</button>
+                                            <a href="/Admin/User" class="btn default">Cancel</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

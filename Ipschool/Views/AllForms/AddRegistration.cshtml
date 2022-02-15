@@ -1,0 +1,174 @@
+﻿@model Ipschool.Models.MainModel
+
+@{
+    ViewBag.Title = "AddAdmission";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script type="text/javascript">
+    function showimagepreviewnew(input) {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#imgprvw').attr('src', e.target.result);
+            }
+            filerdr.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    function showimagepreviewnewbc(input) {
+        if (input.files && input.files[0]) {
+            var filerdr = new FileReader();
+            filerdr.onload = function (e) {
+                $('#imgprvwbc').attr('src', e.target.result);
+            }
+            filerdr.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
+<!-- Breadcubs Area Start Here -->
+<div class="breadcrumbs-area">
+    <h3>Students</h3>
+    <ul>
+        <li>
+            <a href="/Admin/Registration">Home</a>
+        </li>
+        <li>Student Admit Form</li>
+    </ul>
+</div>
+<!-- Breadcubs Area End Here -->
+<!-- Admit Form Area Start Here -->
+<div class="card height-auto">
+    <div class="card-body">
+        <div class="heading-layout1">
+            <div class="item-title">
+                <h3>Add New Students</h3>
+            </div>
+        </div>
+        @using (Html.BeginForm("SaveApplyRegistration", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @class = "new-added-form", @Role = "form" }))
+        {
+            <input type="hidden" id="Id" name="Id" value="@Model.Registration.Id" />
+            <div class="row">
+                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                    <label>Admission ID</label>
+                    <input type="text" name="ApplicationNo" id="ApplicationNo" class="form-control" value="@ViewBag.ApplicationNo" readonly>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                    <label>Admission Date </label>
+                    <input type="text" name="ApplicationDate" id="ApplicationDate" placeholder="dd/mm/yyyy" value="@Model.Registration.ApplicationDate" class="form-control air-datepicker" data-position='bottom right'>
+                    <i class="far fa-calendar-alt"></i>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                    <label>Roll Number</label>
+                    <input type="text" name="RollNo" id="RollNo" class="form-control" value="@Model.Registration.RollNo">
+                </div>
+                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                    <label>Student Name </label>
+                    <input type="text" name="Name" id="Name" class="form-control" value="@Model.Registration.Name">
+                </div>
+                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                    <label>Class </label>
+                    @Html.DropDownList("drpclass", (SelectList)ViewBag.Class, "Select Class", new { @required = "required", @class = "select2" })
+                </div>
+                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                    <label>Date Of Birth </label>
+                    <input type="text" name="DOB" id="DOB" placeholder="dd/mm/yyyy" value="@Model.Registration.DOB" class="form-control air-datepicker" data-position='bottom right'>
+                    <i class="far fa-calendar-alt"></i>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                    <label>Fathers Name </label>
+                    <input type="text" name="FatherName" id="FatherName" class="form-control" value="@Model.Registration.FatherName">
+                </div>
+                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                    <label>Mothers Name </label>
+                    <input type="text" name="MotherName" id="MotherName" class="form-control" value="@Model.Registration.MotherName">
+                </div>
+                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                    <label>Fathers Occupation </label>
+                    @Html.DropDownList("drpoccupation", (SelectList)ViewBag.Occupation, "Select Occupation", new { @required = "required", @class = "select2" })
+                </div>
+                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                    <label>Gender </label>
+                    @Html.DropDownList("rbGrp2", (SelectList)ViewBag.Gender, "Select Gender", new { @required = "required", @class = "select2" })
+                </div>
+                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                    <label>Category </label>
+                    @Html.DropDownList("drpcatagery", (SelectList)ViewBag.Category, "Select Category", new { @required = "required", @class = "select2" })
+                </div>
+                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                    <label>Religion </label>
+                    @Html.DropDownList("drpreligious", (SelectList)ViewBag.Religion, "Select Religion", new { @required = "required", @class = "select2" })
+                </div>
+                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                    <label>E-Mail</label>
+                    <input type="email" name="EmailId" id="EmailId" class="form-control" value="@Model.Registration.EmailId">
+                </div>
+                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                    <label>Phone</label>
+                    <input type="text" name="MobileNo" id="MobileNo" class="form-control" value="@Model.Registration.MobileNo">
+                </div>
+                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                    <label>Aadhar Card No</label>
+                    <input type="text" name="AddharCardNo" id="AddharCardNo" class="form-control" value="@Model.Registration.AddharCardNo">
+                </div>
+                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                    <label>District</label>
+                    <input type="text" name="Distict" id="Distict" class="form-control" value="@Model.Registration.Distict">
+                </div>
+                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                    <label>Pin Code</label>
+                    <input type="text" name="PinCode" id="PinCode" class="form-control" value="@Model.Registration.PinCode">
+                </div>
+                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                    <label>Address</label>
+                    <input type="text" name="Address1" id="Address1" class="form-control" value="@Model.Registration.Address1">
+                </div>
+                <div class="col-lg-4 col-12 form-group">
+                    <label class="text-dark-medium">Upload Student Photo (150px X 150px)</label>
+                    <div class="input-icon right">
+                        <i class="fa"></i>
+                        @if (@Model.Registration.Id != Guid.Empty && @Model.Registration.Img != "")
+                            {
+                            <img src="@Url.Content(Model.Registration.Img)" alt="..." id="imgprvw" class="imageresize" style="width: 150px; height: 150px;" />
+                            }
+                            else
+                            {
+                            <img src="../UserImage/noimage.png" id="imgprvw" class="imageresize" style="width: 100px; height: 100px;" />
+                            }
+                        <br /><br />
+                        <input type="file" name="fileupload" id="fileupload" onchange="showimagepreviewnew(this)" />
+                    </div>
+
+                </div>
+                <div class="col-lg-4 col-12 form-group">
+                    <label class="text-dark-medium">Birth Certificate (150px X 150px)</label>
+                    <div class="input-icon right">
+                        <i class="fa"></i>
+                        @if (@Model.Registration.Id != Guid.Empty && @Model.Registration.Signature != "")
+                        {
+                            <img src="@Url.Content(Model.Registration.Signature)" alt="..." id="imgprvwbc" class="imageresize" style="width: 150px; height: 150px;" />
+                        }
+                        else
+                        {
+                            <img src="../UserImage/noimage.png" id="imgprvwbc" class="imageresize" style="width: 100px; height: 100px;" />
+                        }
+                        <br /><br />
+                        <input type="file" name="fileuploadbc" id="fileuploadbc" onchange="showimagepreviewnewbc(this)" />
+                    </div>
+
+                </div>
+
+                <div class="col-xl-4 col-lg-6 col-12 form-group">
+                    <label>Student Package</label>
+                    <input type="text" name="Package" id="Package" class="form-control" value="@Model.Registration.Extra2">
+                </div>
+                <div class="col-12 form-group mg-t-8">
+                    <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Save</button>
+                    <a href="/Admin/Registration" class="btn-fill-lg bg-blue-dark btn-hover-yellow">Cancel</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
